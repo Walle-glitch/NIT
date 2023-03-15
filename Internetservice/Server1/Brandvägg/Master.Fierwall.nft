@@ -5,7 +5,6 @@
 define Our_subnets = { 193.10.188.0/22, 193.10.192.0/20, 193.10.234.0/23, 193.10.236.0/23, 212.25.132.0/23, 212$
 
 # These are the University West IP addresses
-
 # You can add other networks here, for example the network of your ISP
 
 flush ruleset
