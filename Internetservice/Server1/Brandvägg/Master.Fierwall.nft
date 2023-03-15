@@ -2,7 +2,7 @@
 #/etc/nftables/myrules.nft
 
 
-define Our_subnets = { 193.10.188.0/22, 193.10.192.0/20, 193.10.234.0/23, 193.10.236.0/23, 212.25.132.0/23, 212$
+define Our_subnets = { 10.10.1.0/22, 10.10.19.0/20, 10.10.23.0/23, 10.10.23.0/23, 10.25.12.0/23 }
 
 # These are the University West IP addresses
 # You can add other networks here, for example the network of your ISP
