@@ -1,0 +1,49 @@
+#!/usr/sbin/nft -f
+#/etc/nftables/myrules.nft
+
+
+define Our_subnets = { 193.10.188.0/22, 193.10.192.0/20, 193.10.234.0/23, 193.10.236.0/23, 212.25.132.0/23, 212$
+
+# These are the University West IP addresses
+
+# You can add other networks here, for example the network of your ISP
+
+flush ruleset
+
+table inet My_table {
+
+        chain INPUT {
+
+                type filter hook input priority 0; policy drop;
+
+                        ct state established,related counter accept comment "Accept TCP traffic from us"
+
+                        ip protocol icmp icmp type echo-request ct state new counter accept comment "Count ping$
+
+                        tcp dport 22 ip saddr $Our_subnets counter accept comment "Accept SSH from approved net$
+                        tcp dport 53 counter accept comment "accept DNS"
+                        udp dport 53 counter accept comment "accept DNS"
+                        tcp dport 25 counter accept comment "Accept SMTP"
+
+
+                        counter drop comment "Count dropped packages"
+                }
+
+        chain FORWARD {
+
+                type filter hook forward priority 0; policy drop;
+
+                        counter comment "This should be 0 as this is not a router"
+
+                }
+
+        chain OUTPUT {
+
+                type filter hook output priority 0; policy drop;
+
+                        ct state established,related,new counter accept comment "Accept outgoing traffic"
+
+                        counter drop comment "Count dropped packages"
+
+                }
+}

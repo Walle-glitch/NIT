@@ -1,0 +1,28 @@
+#/var/named/BW-130.zone
+
+
+; Backward zone for grp2.lab.hv.se
+; Default TTL in seconds
+$TTL 86400
+
+; Declare SOA records
+@       IN      SOA     ns1.grp2.lab.hv.se.     root.grp2.lab.hv.se.    (
+                        2022021002      ; Serial change this when doing changes to zone
+                        3600            ; Refresh
+                        1800            ; Retry
+                        604800          ; Expire
+                        86400           ; Minimum TTL
+                )
+; Names Server Information
+@       IN      NS              ns1.grp2.lab.hv.se.
+@       IN      NS              ns2.grp2.lab.hv.se.
+
+; Mail PTR
+130.236.10.193.in-addr.arpa. IN PTR  hostmaster.grp2.lab.hv.se.
+
+; NS PTR Records
+130.236.10.193.in-addr.arpa. IN PTR  ns1.grp2.lab.hv.se.
+
+; Server PTR
+
+130.236.10.193.in-addr.arpa. IN PTR  srv1.grp2.lab.hv.se.

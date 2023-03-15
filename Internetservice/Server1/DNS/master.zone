@@ -1,0 +1,48 @@
+;#/var/named/grp2.lab.hv.se.zone
+
+; Forward zone for grp2.lab.hv.se.
+; Default TTL in seconds
+$TTL 500
+
+; Declare SOA records
+grp2.lab.hv.se.       IN      SOA     ns1.grp2.lab.hv.se.     root.grp2.lab.hv.se.    (
+                        2022022304      ; Serial change this when doing changes to zone
+                        500             ; Refresh
+                        500             ; Retry
+                        500             ; Expire
+                        500 )           ; Minimum TTL
+
+; Name Server Information
+grp2.lab.hv.se.         IN      NS              ns1.grp2.lab.hv.se.
+grp2.lab.hv.se.         IN      NS              ns2.grp2.lab.hv.se.
+
+; Secondary Name server
+grp2.lab.hv.se.         IN      NS              ns2.grp2.lab.hv.se.
+
+; IP address of Name Servers
+ns1.grp2.lab.hv.se.     IN      A               193.10.236.130
+ns2.grp2.lab.hv.se.     IN      A               193.10.236.131
+
+; IP address of secondary server
+ns2.grp2.lab.hv.se.     IN      A               193.10.236.131
+
+; CNAME
+mail                    IN      CNAME           ns1.grp2.lab.hv.se.
+
+; MX
+grp2.lab.hv.se.         IN      MX      10      mail.grp2.lab.hv.se.
+
+; LOC
+grp2.lab.hv.se.         IN      LOC             58 N 12 E 50m
+
+; PTR
+193.10.236.131          IN      PTR             ns2.grp2.lab.hv.se.
+193.10.236.130          IN      PTR             ns1.grp2.lab.hv.se.
+130.236.10.193.in-addr.arpa. IN PTR             ns1.grp2.lab.hv.se.
+
+
+; Mail PTR
+130.236.10.193.in-addr.arpa. IN PTR             mail.grp2.lab.hv.se.
+
+; NS PTR Records
+130.236.10.193.in-addr.arpa. IN PTR             ns1.grp2.lab.hv.se.
